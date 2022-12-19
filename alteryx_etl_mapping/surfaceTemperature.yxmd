@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxConnectorGui.MongoInput.MongoInput">
+        <Position x="42" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Server>localhost:27017</Server>
+          <UserName />
+          <Password />
+          <Database>dapDatabase</Database>
+          <Collection>surfaceTemperature</Collection>
+          <RecordLimit>16500</RecordLimit>
+          <Mode>Automatic</Mode>
+          <IncludeRowid value="False" />
+          <Filter />
+          <Depth />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Reading surface temperature input file from mongodb</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="dt" size="10" source="MongoInput:" type="WString" />
+            <Field name="AverageTemperature" source="MongoInput:" type="Double" />
+            <Field name="AverageTemperatureUncertainty" source="MongoInput:" type="Double" />
+            <Field name="City" size="11" source="MongoInput:" type="WString" />
+            <Field name="Country" size="14" source="MongoInput:" type="WString" />
+            <Field name="Latitude" size="6" source="MongoInput:" type="WString" />
+            <Field name="Longitude" size="6" source="MongoInput:" type="WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxMongoInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="186" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_20104_1048792773b20b4ea8e9ca70e89b0b88_\Engine_20104_7e40a619d084a34194c9e527b1a29bbf~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Checking sample records</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="306" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>Date</InputFieldName>
+          <Language>English</Language>
+          <Format>yyyy-MM-dd</Format>
+          <OutputFieldName>Date_Upd</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert Date From:
+yyyy-MM-dd</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="774" y="210" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=mysql;UID=root;PWD=__EncPwd1__|||surface_temperature</File>
+          <Passwords>47E57D8F8C7C62BE554423D1B63C76947</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <SpatialObjSize>8000</SpatialObjSize>
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Loading data on mysql rdbms server. 
+Creating table surface_temperature. Target table will be overwritten at every execution of this workflow.</AnnotationText>
+          <DefaultAnnotationText>DSN=mysql
+Query=surface_temperature</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="750" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File FileFormat="42" MaxRecords="">C:\NCI Content\DAP Lab\Project\21209251\surfaceTemperature.tde</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Creating surfaceTemperature.tde extract to create tableau visualization.</AnnotationText>
+          <DefaultAnnotationText>surfaceTemperature.tde</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="174" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="dt" selected="True" rename="Date" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Selecting the required columns from source data.</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="630" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="Date" />
+            <Field field="Country" />
+            <Field field="City" />
+            <Field field="AverageTemperature" />
+            <Field field="AverageTemperatureUncertainty" />
+            <Field field="Latitude" />
+            <Field field="Longitude" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Dropping duplicate records if any.</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="402" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Date_Upd" selected="True" rename="Date" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="City" selected="True" />
+            <SelectField field="AverageTemperature" selected="True" />
+            <SelectField field="AverageTemperatureUncertainty" selected="True" />
+            <SelectField field="Latitude" selected="True" />
+            <SelectField field="Longitude" selected="True" />
+            <SelectField field="Date" selected="False" />
+            <SelectField field="Date2" selected="False" rename="Date" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Selecting the appropriate columns</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="23">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="498" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>!IsNull([AverageTemperature]) &amp;&amp; !IsNull([AverageTemperatureUncertainty]) &amp;&amp; DateTimeYear(Date)  &gt;= 1992</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Dropping Null records from data. Filtering out any data prior to 1992.</AnnotationText>
+          <DefaultAnnotationText>!IsNull([AverageTemperature]) &amp;&amp; !IsNull([AverageTemperatureUncertainty]) &amp;&amp; Dat...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Unique" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Unique" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="23" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="23" Connection="True" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>surfaceTemperature</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="7a569a24-190d-40ca-bd6c-f1ebfa4cae48" />
+      <Telemetry>
+        <PreviousWorkflowId value="dc0023c0-f2c8-4069-9714-7366d32d1989" />
+        <OriginWorkflowId value="39bf0773-df64-4561-8b53-40141051a2e2" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

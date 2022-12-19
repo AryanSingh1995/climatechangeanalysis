@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxConnectorGui.MongoInput.MongoInput">
+        <Position x="54" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Server>localhost:27017</Server>
+          <UserName />
+          <Password />
+          <Database>dapDatabase</Database>
+          <Collection>changeInSeaLevel</Collection>
+          <RecordLimit />
+          <Mode>Automatic</Mode>
+          <IncludeRowid value="False" />
+          <Filter />
+          <Depth />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Reading input change in mean sea level input file from mongodb</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="ObjectId" size="5" source="MongoInput:" type="WString" />
+            <Field name="Country" size="5" source="MongoInput:" type="WString" />
+            <Field name="ISO2" size="4" source="MongoInput:" type="WString" />
+            <Field name="ISO3" size="3" source="MongoInput:" type="WString" />
+            <Field name="Indicator" size="51" source="MongoInput:" type="WString" />
+            <Field name="Unit" size="11" source="MongoInput:" type="WString" />
+            <Field name="Source" size="216" source="MongoInput:" type="WString" />
+            <Field name="CTS_Code" size="4" source="MongoInput:" type="WString" />
+            <Field name="CTS_Name" size="24" source="MongoInput:" type="WString" />
+            <Field name="CTS_Full_Descriptor" size="73" source="MongoInput:" type="WString" />
+            <Field name="Measure" size="14" source="MongoInput:" type="WString" />
+            <Field name="Date" size="11" source="MongoInput:" type="WString" />
+            <Field name="Value" size="7" source="MongoInput:" type="WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxMongoInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="222" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_19264_f3eebd1545b2d84f984bf4f3d0d9307f_\Engine_19264_e1a29c280dc52546a523caf75c5ec597~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>checking sample records</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="234" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="Substring(date,1)&#xA;" field="Date" size="11" type="WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText><![CDATA[converting date column to correct date format 
+Date = Substring(date,1)
+
+]]></AnnotationText>
+          <DefaultAnnotationText><![CDATA[Date = Substring(date,1)
+
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="354" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>Date</InputFieldName>
+          <Language>English</Language>
+          <Format>MM/dd/yyyy</Format>
+          <OutputFieldName>Date_Upd</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="2">
+          <Name />
+          <AnnotationText>Converting date column from string type to date format "MM/dd/yyyy"</AnnotationText>
+          <DefaultAnnotationText>Convert Date From:
+MM/dd/yyyy</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="462" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="ObjectId" selected="True" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="ISO3" selected="True" />
+            <SelectField field="Indicator" selected="True" />
+            <SelectField field="Unit" selected="True" />
+            <SelectField field="Measure" selected="True" />
+            <SelectField field="Value" selected="True" />
+            <SelectField field="Date_Upd" selected="True" rename="Date" />
+            <SelectField field="Date2" selected="False" rename="Date" />
+            <SelectField field="formatted_date" selected="False" rename="Date" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>selecting required attributes</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="570" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Indicator" action="GroupBy" rename="Indicator" />
+            <SummarizeField field="ObjectId" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>checking indicator wise record count</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="642" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[Indicator] != "Change in mean sea level: Sea level: Trend"</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>keeping records for Jason and Poseidon satellite details and dropping other records 
+[Indicator] != "Change in mean sea level: Sea level: Trend"</AnnotationText>
+          <DefaultAnnotationText>[Indicator] != "Change in mean sea level: Sea level: Trend"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="942" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_19264_f3eebd1545b2d84f984bf4f3d0d9307f_\Engine_19264_a9d49c3bb728e240bf67bfdc895ec3b1~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Checking sample records</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1338" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=mysql;UID=root;PWD=__EncPwd1__|||mean_sea_level</File>
+          <Passwords>47E57D8F8C7C62BE554423D1B63C76947</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <SpatialObjSize>8000</SpatialObjSize>
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Loading data on mysql rdbms server. 
+Creating table mean_sea_level. Target table will be overwritten at every execution of this workflow.</AnnotationText>
+          <DefaultAnnotationText>DSN=mysql
+Query=mean_sea_level</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="990" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="ObjectId" selected="True" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="ISO3" selected="True" />
+            <SelectField field="Indicator" selected="True" rename="Satellite_type" />
+            <SelectField field="Unit" selected="True" />
+            <SelectField field="Measure" selected="True" rename="Sea_name" />
+            <SelectField field="Value" selected="True" rename="Mean_value" type="Float" size="4" />
+            <SelectField field="Date" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>changing data type of required columns</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="858" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF [Indicator] == &quot;Change in mean sea level: Sea level: TOPEX.Poseidon&quot; THEN &quot;Poseidon Satellite&quot; &#xA;ELSEIF [Indicator] == &quot;Change in mean sea level: Sea level: Jason.3&quot; THEN &quot;Jason.3 Satellite&quot;&#xA;ELSEIF [Indicator] == &quot;Change in mean sea level: Sea level: Jason.2&quot; THEN &quot;Jason.2 Satellite&quot;&#xA;ELSEIF [Indicator] == &quot;Change in mean sea level: Sea level: Jason.1&quot; THEN &quot;Jason.1 Satellite&quot;&#xA;ELSE &quot;Trend&quot; ENDIF" field="Indicator" size="51" type="WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Indicator = IF [Indicator] == "Change in mean sea level: Sea level: TOPEX.Poseid...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1326" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File FileFormat="42" MaxRecords="">C:\NCI Content\DAP Lab\Project\21209251\changeInSeaLevel.tde</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Creating changeinsealevel.tde extract to create tableau visualization.</AnnotationText>
+          <DefaultAnnotationText>changeInSeaLevel.tde</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="1110" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="ObjectId" />
+            <Field field="Country" />
+            <Field field="ISO3" />
+            <Field field="Satellite_type" />
+            <Field field="Unit" />
+            <Field field="Sea_name" />
+            <Field field="Mean_value" />
+            <Field field="Date" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText><![CDATA[Dropping duplicate records if any ]]></AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="True" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="True" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Unique" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Unique" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>changeInSeaLevel</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="80f5b82c-9fd3-4021-9186-3c13b01abdca" />
+      <Telemetry>
+        <PreviousWorkflowId value="c594f9b2-a66b-4a66-8e92-1c31f3166186" />
+        <OriginWorkflowId value="c594f9b2-a66b-4a66-8e92-1c31f3166186" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

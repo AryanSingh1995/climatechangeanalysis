@@ -1,0 +1,569 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxConnectorGui.MongoInput.MongoInput">
+        <Position x="54" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Server>localhost:27017</Server>
+          <UserName />
+          <Password />
+          <Database>dapDatabase</Database>
+          <Collection>naturalDisaster</Collection>
+          <RecordLimit>16500</RecordLimit>
+          <Mode>Automatic</Mode>
+          <IncludeRowid value="False" />
+          <Filter />
+          <Depth />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Reading natural disaster input file from mongodb</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Year" source="MongoInput:" type="Int32" />
+            <Field name="Seq" source="MongoInput:" type="Int32" />
+            <Field name="Disaster Group" size="7" source="MongoInput:" type="WString" />
+            <Field name="Disaster Subgroup" size="17" source="MongoInput:" type="WString" />
+            <Field name="Disaster Type" size="21" source="MongoInput:" type="WString" />
+            <Field name="Disaster Subtype" size="32" source="MongoInput:" type="WString" />
+            <Field name="Country" size="58" source="MongoInput:" type="WString" />
+            <Field name="ISO" size="3" source="MongoInput:" type="WString" />
+            <Field name="Region" size="25" source="MongoInput:" type="WString" />
+            <Field name="Continent" size="8" source="MongoInput:" type="WString" />
+            <Field name="Location" size="2878" source="MongoInput:" type="V_WString" />
+            <Field name="Associated Dis" size="29" source="MongoInput:" type="WString" />
+            <Field name="Appeal" size="3" source="MongoInput:" type="WString" />
+            <Field name="Declaration" size="3" source="MongoInput:" type="WString" />
+            <Field name="Dis Mag Scale" size="10" source="MongoInput:" type="WString" />
+            <Field name="Start Year" source="MongoInput:" type="Int32" />
+            <Field name="End Year" source="MongoInput:" type="Int32" />
+            <Field name="Total Deaths" source="MongoInput:" type="Double" />
+            <Field name="CPI" source="MongoInput:" type="Double" />
+            <Field name="Dis Mag Value" source="MongoInput:" type="Double" />
+            <Field name="Latitude" size="12" source="MongoInput:" type="WString" />
+            <Field name="Longitude" size="12" source="MongoInput:" type="WString" />
+            <Field name="Local Time" size="8" source="MongoInput:" type="WString" />
+            <Field name="Start Month" source="MongoInput:" type="Double" />
+            <Field name="Start Day" source="MongoInput:" type="Double" />
+            <Field name="End Month" source="MongoInput:" type="Double" />
+            <Field name="End Day" source="MongoInput:" type="Double" />
+            <Field name="Total Damages ('000 US$)" source="MongoInput:" type="Double" />
+            <Field name="Event Name" size="76" source="MongoInput:" type="WString" />
+            <Field name="No Injured" source="MongoInput:" type="Double" />
+            <Field name="Total Affected" source="MongoInput:" type="Double" />
+            <Field name="No Homeless" source="MongoInput:" type="Double" />
+            <Field name="Disaster Subsubtype" size="23" source="MongoInput:" type="WString" />
+            <Field name="No Affected" source="MongoInput:" type="Double" />
+            <Field name="Associated Dis2" size="29" source="MongoInput:" type="WString" />
+            <Field name="Adm Level" size="3" source="MongoInput:" type="WString" />
+            <Field name="Admin2 Code" size="1571" source="MongoInput:" type="V_WString" />
+            <Field name="Geo Locations" size="2526" source="MongoInput:" type="V_WString" />
+            <Field name="Origin" size="118" source="MongoInput:" type="WString" />
+            <Field name="River Basin" size="402" source="MongoInput:" type="V_WString" />
+            <Field name="OFDA Response" size="3" source="MongoInput:" type="WString" />
+            <Field name="Insured Damages ('000 US$)" source="MongoInput:" type="Double" />
+            <Field name="Aid Contribution" source="MongoInput:" type="Double" />
+            <Field name="Admin1 Code" size="399" source="MongoInput:" type="V_WString" />
+            <Field name="Glide" size="25" source="MongoInput:" type="WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxMongoInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="150" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_22144_227c482b86e79d46ac32d29c0fc2d30c_\Engine_22144_08995e10a168184586431c36b6010f24~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Checking sample records</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="318" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if (IsNull([Start Month])) then &quot;01&quot; else [Start Month] endif" field="Start Month" size="16384" type="String" />
+            <FormulaField expression="if (IsNull([Start Day])) then &quot;01&quot; else [Start Day] endif" field="Start Day" size="16384" type="String" />
+            <FormulaField expression="if (IsNull([End Month])) then &quot;01&quot; else [End Month] endif" field="End Month" size="16384" type="String" />
+            <FormulaField expression="if (IsNull([End Day])) then &quot;01&quot; else [End Day] endif" field="End Day" size="16384" type="String" />
+            <FormulaField expression="if (IsNull([Total Damages ('000 US$)])) then 0 else([Total Damages ('000 US$)]) endif" field="Total Damages ('000 US$)" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([No Injured])) then 0 else([No Injured]) endif" field="No Injured" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([Total Affected])) then 0 else([Total Affected]) endif" field="Total Affected" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([No Homeless])) then 0 else([No Homeless]) endif" field="No Homeless" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([No Affected])) then 0 else([No Affected]) endif" field="No Affected" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([Insured Damages ('000 US$)])) then 0 else ([Insured Damages ('000 US$)]) endif" field="Insured Damages ('000 US$)" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([Total Deaths])) then 1 else [Total Deaths] endif" field="Total Deaths" size="8" type="Double" />
+            <FormulaField expression="if (IsNull([Disaster Subtype])) then [Disaster Type] else [Disaster Subtype] endif" field="Disaster Subtype" size="32" type="WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Start Month = if (IsNull([Start Month])) then "01" else [Start Month] endif
+Star...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="222" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Year" selected="True" type="String" size="16384" />
+            <SelectField field="Seq" selected="False" />
+            <SelectField field="Disaster Group" selected="False" />
+            <SelectField field="Disaster Subgroup" selected="True" />
+            <SelectField field="Disaster Type" selected="True" />
+            <SelectField field="Disaster Subtype" selected="True" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="ISO" selected="True" />
+            <SelectField field="Region" selected="True" />
+            <SelectField field="Continent" selected="True" />
+            <SelectField field="Location" selected="True" />
+            <SelectField field="Associated Dis" selected="False" />
+            <SelectField field="Appeal" selected="True" />
+            <SelectField field="Declaration" selected="True" />
+            <SelectField field="Dis Mag Scale" selected="False" />
+            <SelectField field="Start Year" selected="True" type="String" size="16384" />
+            <SelectField field="End Year" selected="True" type="String" size="16384" />
+            <SelectField field="Total Deaths" selected="True" />
+            <SelectField field="CPI" selected="False" />
+            <SelectField field="Dis Mag Value" selected="False" />
+            <SelectField field="Latitude" selected="False" />
+            <SelectField field="Longitude" selected="False" />
+            <SelectField field="Local Time" selected="False" />
+            <SelectField field="Start Month" selected="True" type="String" size="16384" />
+            <SelectField field="Start Day" selected="True" type="String" size="16384" />
+            <SelectField field="End Month" selected="True" type="String" size="16384" />
+            <SelectField field="End Day" selected="True" type="String" size="16384" />
+            <SelectField field="Total Damages ('000 US$)" selected="True" />
+            <SelectField field="Event Name" selected="False" />
+            <SelectField field="No Injured" selected="True" />
+            <SelectField field="Total Affected" selected="True" />
+            <SelectField field="No Homeless" selected="True" />
+            <SelectField field="Disaster Subsubtype" selected="False" />
+            <SelectField field="No Affected" selected="True" />
+            <SelectField field="Associated Dis2" selected="False" />
+            <SelectField field="Adm Level" selected="False" />
+            <SelectField field="Admin2 Code" selected="False" />
+            <SelectField field="Geo Locations" selected="False" />
+            <SelectField field="Origin" selected="False" />
+            <SelectField field="River Basin" selected="False" />
+            <SelectField field="OFDA Response" selected="True" />
+            <SelectField field="Insured Damages ('000 US$)" selected="True" />
+            <SelectField field="Aid Contribution" selected="False" />
+            <SelectField field="Admin1 Code" selected="False" />
+            <SelectField field="Glide" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Selecting required attributes from source data</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="426" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if  ([Start Month] IN (&quot;2&quot;,&quot;4&quot;,&quot;6&quot;,&quot;9&quot;,&quot;11&quot;) &amp;&amp; &#xA;[Start Day] == &quot;31&quot;)&#xA;then [Start Day] =&quot;30&quot;  else [Start Day]&#xA;&#xA;endif&#xA;&#xA;" field="Start Day" size="16384" type="String" />
+            <FormulaField expression="if  ([End Month] IN (&quot;2&quot;,&quot;4&quot;,&quot;6&quot;,&quot;9&quot;,&quot;11&quot;) &amp;&amp; &#xA;[End Day] == &quot;31&quot;)&#xA;then [End Day] =&quot;30&quot;  else [End Day]&#xA;&#xA;endif&#xA;&#xA;" field="End Day" size="16384" type="String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Start Day = if  ([Start Month] IN ("2","4","6","9","11") &amp;&amp; 
+[Start Day] == "31"...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="870" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Disaster Subgroup" selected="True" />
+            <SelectField field="Disaster Type" selected="True" />
+            <SelectField field="Disaster Subtype" selected="True" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="ISO" selected="True" />
+            <SelectField field="Region" selected="True" />
+            <SelectField field="Continent" selected="True" />
+            <SelectField field="Location" selected="True" />
+            <SelectField field="Appeal" selected="True" />
+            <SelectField field="Declaration" selected="True" />
+            <SelectField field="Total Deaths" selected="True" />
+            <SelectField field="Total Damages ('000 US$)" selected="True" />
+            <SelectField field="No Injured" selected="True" />
+            <SelectField field="Total Affected" selected="True" />
+            <SelectField field="No Homeless" selected="True" />
+            <SelectField field="No Affected" selected="True" />
+            <SelectField field="OFDA Response" selected="True" />
+            <SelectField field="Insured Damages ('000 US$)" selected="True" />
+            <SelectField field="Start Date" selected="False" type="Date" size="10" />
+            <SelectField field="End Date" selected="False" type="Date" size="10" />
+            <SelectField field="Start Date_Upd" selected="True" rename="Start_Date" />
+            <SelectField field="End Date_Upd" selected="True" rename="End_Date" type="Date" size="10" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Selecting required attributes from output</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="642" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>Start Date</InputFieldName>
+          <Language>English</Language>
+          <Format>yyyy-MM-dd</Format>
+          <OutputFieldName>Start Date_Upd</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Cover Start Date column to correct format</AnnotationText>
+          <DefaultAnnotationText>Convert Start Date From:
+yyyy-MM-dd</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="762" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>End Date</InputFieldName>
+          <Language>English</Language>
+          <Format />
+          <OutputFieldName>End Date_Upd</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Cover End Date column to correct format</AnnotationText>
+          <DefaultAnnotationText>Convert End Date From:
+Custom</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="534" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[Start Year] +'-'+ [Start Month] +'-' + [Start Day]" field="Start Date" size="1073741823" type="V_WString" />
+            <FormulaField expression="[End Year] +'-'+ [End Month] +'-' + [End Day]" field="End Date" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Start Date = [Start Year] +'-'+ [Start Month] +'-' + [Start Day]
+End Date = [End...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1278" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=mysql;UID=root;PWD=__EncPwd1__|||natural_disaster</File>
+          <Passwords>47E57D8F8C7C62BE554423D1B63C76947</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <SpatialObjSize>8000</SpatialObjSize>
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Loading data on mysql rdbms server. 
+Creating table natural_disaster. Target table will be overwritten at every execution of this workflow.</AnnotationText>
+          <DefaultAnnotationText>DSN=mysql
+Query=natural_disaster</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1266" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File FileFormat="42" MaxRecords="">C:\NCI Content\DAP Lab\Project\21209251\naturalDisaster.tde</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <OutputOption>Overwrite</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Creating naturalDisaster.tds extract to create tableau visualization.</AnnotationText>
+          <DefaultAnnotationText>naturalDisaster.tde</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="966" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IIF(IsNull([Start_Date]), [End_Date], [Start_Date])" field="Start_Date" size="10" type="Date" />
+            <FormulaField expression="IIF(IsNull([End_Date]), [Start_Date], [End_Date])" field="End_Date" size="10" type="Date" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Start_Date = IIF(IsNull([Start_Date]), [End_Date], [Start_Date])
+End_Date = IIF(...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1074" y="90" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>IsNotNull</Operator>
+            <Field>Start_Date</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2022-12-19 13:01:57</PeriodDate>
+              <PeriodType>days</PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>2022-12-19</Operand>
+              <StartDate>2022-12-19 13:01:57</StartDate>
+              <EndDate>2022-12-19 13:01:57</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>!IsNull([Start_Date])</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1158" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>IsNotNull</Operator>
+            <Field>End_Date</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2022-12-19 13:06:08</PeriodDate>
+              <PeriodType>days</PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>2022-12-19</Operand>
+              <StartDate>2022-12-19 13:06:08</StartDate>
+              <EndDate>2022-12-19 13:06:08</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>!IsNull([End_Date])</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="True" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="True" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="True" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>naturalDisaster</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="dc0023c0-f2c8-4069-9714-7366d32d1989" />
+      <Telemetry>
+        <PreviousWorkflowId value="39bf0773-df64-4561-8b53-40141051a2e2" />
+        <OriginWorkflowId value="39bf0773-df64-4561-8b53-40141051a2e2" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

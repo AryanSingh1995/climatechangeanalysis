@@ -3,7 +3,7 @@
   <Nodes>
     <Node ToolID="1">
       <GuiSettings Plugin="AlteryxConnectorGui.MongoInput.MongoInput">
-        <Position x="54" y="174" />
+        <Position x="114" y="174" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -50,7 +50,7 @@
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_19264_f3eebd1545b2d84f984bf4f3d0d9307f_\Engine_19264_e1a29c280dc52546a523caf75c5ec597~.yxdb</TempFile>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_16568_dcce641e01a318419bd8d111c6ffd738_\Engine_16568_93942b625b50c54dad40ef6c287b91f5~.yxdb</TempFile>
           <TempFileDataProfiling />
           <Layout>
             <ViewMode>Single</ViewMode>
@@ -99,21 +99,21 @@ Date = Substring(date,1)
     </Node>
     <Node ToolID="4">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
-        <Position x="354" y="198" />
+        <Position x="342" y="198" />
       </GuiSettings>
       <Properties>
         <Configuration>
           <IsFrom value="False" />
           <InputFieldName>Date</InputFieldName>
           <Language>English</Language>
-          <Format>MM/dd/yyyy</Format>
+          <Format>yyyy-MM-dd</Format>
           <OutputFieldName>Date_Upd</OutputFieldName>
         </Configuration>
         <Annotation DisplayMode="2">
           <Name />
-          <AnnotationText>Converting date column from string type to date format "MM/dd/yyyy"</AnnotationText>
+          <AnnotationText>Converting date column to correct date format.</AnnotationText>
           <DefaultAnnotationText>Convert Date From:
-MM/dd/yyyy</DefaultAnnotationText>
+yyyy-MM-dd</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
       </Properties>
@@ -121,7 +121,7 @@ MM/dd/yyyy</DefaultAnnotationText>
     </Node>
     <Node ToolID="5">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="462" y="198" />
+        <Position x="438" y="198" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -152,7 +152,7 @@ MM/dd/yyyy</DefaultAnnotationText>
     </Node>
     <Node ToolID="8">
       <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-        <Position x="570" y="66" />
+        <Position x="510" y="66" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -172,7 +172,7 @@ MM/dd/yyyy</DefaultAnnotationText>
     </Node>
     <Node ToolID="9">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-        <Position x="642" y="186" />
+        <Position x="546" y="198" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -191,11 +191,11 @@ MM/dd/yyyy</DefaultAnnotationText>
     </Node>
     <Node ToolID="10">
       <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-        <Position x="942" y="54" />
+        <Position x="642" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_19264_f3eebd1545b2d84f984bf4f3d0d9307f_\Engine_19264_a9d49c3bb728e240bf67bfdc895ec3b1~.yxdb</TempFile>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_16568_dcce641e01a318419bd8d111c6ffd738_\Engine_16568_a067a3bd3d7e1542b1782b358d9e1f10~.yxdb</TempFile>
           <TempFileDataProfiling />
           <Layout>
             <ViewMode>Single</ViewMode>
@@ -220,7 +220,7 @@ MM/dd/yyyy</DefaultAnnotationText>
     </Node>
     <Node ToolID="12">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="1338" y="234" />
+        <Position x="1050" y="174" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -252,7 +252,7 @@ Query=mean_sea_level</DefaultAnnotationText>
     </Node>
     <Node ToolID="13">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="990" y="186" />
+        <Position x="786" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -281,7 +281,7 @@ Query=mean_sea_level</DefaultAnnotationText>
     </Node>
     <Node ToolID="14">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="858" y="198" />
+        <Position x="654" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -297,35 +297,9 @@ Query=mean_sea_level</DefaultAnnotationText>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
     </Node>
-    <Node ToolID="15">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="1326" y="78" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <File FileFormat="42" MaxRecords="">C:\NCI Content\DAP Lab\Project\21209251\changeInSeaLevel.tde</File>
-          <Passwords />
-          <Disable>False</Disable>
-          <FormatSpecificOptions>
-            <OutputOption>Overwrite</OutputOption>
-          </FormatSpecificOptions>
-          <MultiFile value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>Creating changeinsealevel.tde extract to create tableau visualization.</AnnotationText>
-          <DefaultAnnotationText>changeInSeaLevel.tde</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <Dependencies>
-          <Implicit />
-        </Dependencies>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
-    </Node>
     <Node ToolID="16">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
-        <Position x="1110" y="186" />
+        <Position x="906" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -394,10 +368,6 @@ Query=mean_sea_level</DefaultAnnotationText>
     <Connection>
       <Origin ToolID="16" Connection="Unique" />
       <Destination ToolID="12" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="16" Connection="Unique" />
-      <Destination ToolID="15" Connection="Input" />
     </Connection>
   </Connections>
   <Properties>

@@ -3,7 +3,7 @@
   <Nodes>
     <Node ToolID="1">
       <GuiSettings Plugin="AlteryxConnectorGui.MongoInput.MongoInput">
-        <Position x="42" y="162" />
+        <Position x="54" y="162" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -12,7 +12,7 @@
           <Password />
           <Database>dapDatabase</Database>
           <Collection>surfaceTemperature</Collection>
-          <RecordLimit>16500</RecordLimit>
+          <RecordLimit>250000</RecordLimit>
           <Mode>Automatic</Mode>
           <IncludeRowid value="False" />
           <Filter />
@@ -29,10 +29,10 @@
             <Field name="dt" size="10" source="MongoInput:" type="WString" />
             <Field name="AverageTemperature" source="MongoInput:" type="Double" />
             <Field name="AverageTemperatureUncertainty" source="MongoInput:" type="Double" />
-            <Field name="City" size="11" source="MongoInput:" type="WString" />
-            <Field name="Country" size="14" source="MongoInput:" type="WString" />
+            <Field name="City" size="16" source="MongoInput:" type="WString" />
+            <Field name="Country" size="34" source="MongoInput:" type="WString" />
             <Field name="Latitude" size="6" source="MongoInput:" type="WString" />
-            <Field name="Longitude" size="6" source="MongoInput:" type="WString" />
+            <Field name="Longitude" size="7" source="MongoInput:" type="WString" />
           </RecordInfo>
         </MetaInfo>
       </Properties>
@@ -40,11 +40,11 @@
     </Node>
     <Node ToolID="2">
       <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-        <Position x="186" y="102" />
+        <Position x="198" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_20104_1048792773b20b4ea8e9ca70e89b0b88_\Engine_20104_7e40a619d084a34194c9e527b1a29bbf~.yxdb</TempFile>
+          <TempFile>C:\Users\manis\AppData\Local\Temp\Engine_24940_474192e1b40b7543a91389d320b6b522_\Engine_24940_edc870cc6680c94ba20ec62d534bcb5d~.yxdb</TempFile>
           <TempFileDataProfiling />
           <Layout>
             <ViewMode>Single</ViewMode>
@@ -69,7 +69,7 @@
     </Node>
     <Node ToolID="8">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
-        <Position x="306" y="186" />
+        <Position x="318" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -90,7 +90,7 @@ yyyy-MM-dd</DefaultAnnotationText>
     </Node>
     <Node ToolID="11">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="774" y="210" />
+        <Position x="798" y="114" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -120,35 +120,9 @@ Query=surface_temperature</DefaultAnnotationText>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
     </Node>
-    <Node ToolID="12">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="750" y="54" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <File FileFormat="42" MaxRecords="">C:\NCI Content\DAP Lab\Project\21209251\surfaceTemperature.tde</File>
-          <Passwords />
-          <Disable>False</Disable>
-          <FormatSpecificOptions>
-            <OutputOption>Overwrite</OutputOption>
-          </FormatSpecificOptions>
-          <MultiFile value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <AnnotationText>Creating surfaceTemperature.tde extract to create tableau visualization.</AnnotationText>
-          <DefaultAnnotationText>surfaceTemperature.tde</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <Dependencies>
-          <Implicit />
-        </Dependencies>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
-    </Node>
     <Node ToolID="19">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="174" y="186" />
+        <Position x="186" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -170,7 +144,7 @@ Query=surface_temperature</DefaultAnnotationText>
     </Node>
     <Node ToolID="21">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
-        <Position x="630" y="138" />
+        <Position x="642" y="138" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -195,7 +169,7 @@ Query=surface_temperature</DefaultAnnotationText>
     </Node>
     <Node ToolID="22">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="402" y="186" />
+        <Position x="414" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -225,7 +199,7 @@ Query=surface_temperature</DefaultAnnotationText>
     </Node>
     <Node ToolID="23">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-        <Position x="498" y="186" />
+        <Position x="510" y="186" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -258,10 +232,6 @@ Query=surface_temperature</DefaultAnnotationText>
     <Connection>
       <Origin ToolID="19" Connection="Output" />
       <Destination ToolID="8" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="21" Connection="Unique" />
-      <Destination ToolID="12" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="21" Connection="Unique" />
